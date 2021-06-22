@@ -114,8 +114,6 @@ def apod(request):
         'prev_30': [],  # array of objects of the form img_info
         'active': ''
     }
-    for object in Prev30.objects.all():
-        object.delete()
     if len(Prev30.objects.all()) == 0 or len(
             Prev30.objects.all().filter(date=(datetime.today()-timedelta(days=1)).strftime('%Y-%m-%d'))) == 0:
         todays_date = (datetime.today()-timedelta(days=1)).strftime('%Y-%m-%d')
