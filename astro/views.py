@@ -114,10 +114,11 @@ def apod(request):
         'prev_30': [],  # array of objects of the form img_info
         'active': ''
     }
+    Prev30.objects.all().delete()
     if len(Prev30.objects.all()) == 0 or len(
             Prev30.objects.all().filter(date=(datetime.today()-timedelta(days=1)).strftime('%Y-%m-%d'))) == 0:
         todays_date = (datetime.today()-timedelta(days=1)).strftime('%Y-%m-%d')
-        date_month_before = (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')
+        date_month_before = (datetime.today() - timedelta(days=30)).strftime('%Y-%m-%d')
         print(date_month_before,todays_date)
         response = requests.get(f'{api_url}?start_date={date_month_before}&end_date={todays_date}&api_key={my_key}')
         context['prev_30'] = json.loads(response.text)[::-1]
