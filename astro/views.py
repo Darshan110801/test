@@ -12,18 +12,18 @@ def home(request):
         'caption_info': ''
     }
     carousels = [{
-        'image': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/about%201.jpg?raw=true'
+        'image': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/about%201.jpg?raw=true',
         'caption_title': 'We are Astro Club,VNIT',
         'caption': 'Are you one of those Space buffs? Wanna hone you amateur skills in Astronomy? Look no'
                    ' further you have reached your destination! Welcome to Astro Club VNIT!'
     }, {
-        'image': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/about%202.jpg?raw=true'
+        'image': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/about%202.jpg?raw=true',
         'caption_title': 'Sky is the limit',
         'caption': 'Have a look at this beautiful image🤩, capturing the Star trails, taken by our club '
                    'member Ojas Sharma.'
     },
         {
-            'image': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/about%203.jpg?raw=true'
+            'image': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/about%203.jpg?raw=true',
             'caption_title': '',
             'caption': 'Astronomy Club of VNIT, Ashlesha invites you to gaze upon the heavens and beyond and see'
                        ' the unfolding of the cosmic miracle.'
