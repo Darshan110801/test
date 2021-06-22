@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+
 {% block content %}
     <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000">
         <ol class="carousel-indicators">
@@ -13,10 +13,10 @@
                         <div class="carousel-item {{ carousel.active }}">
                             <a href="https://bootstrapcreative.com/">
                                 <picture>
-                                    <source srcset="{% static IMAGE_PATH %}" media="(min-width: 1400px)">
-                                    <source srcset="{% static IMAGE_PATH %}" media="(min-width: 769px)">
-                                    <source srcset="{% static IMAGE_PATH %}" media="(min-width: 577px)">
-                                    <img srcset="{% static IMAGE_PATH %}" alt="responsive image"
+                                    <source srcset="{{ IMAGE_PATH }}" media="(min-width: 1400px)">
+                                    <source srcset="{{ IMAGE_PATH }}" media="(min-width: 769px)">
+                                    <source srcset="{{ IMAGE_PATH }}" media="(min-width: 577px)">
+                                    <img srcset="" alt="responsive image"
                                          class="d-block img-fluid">
                                 </picture>
 
