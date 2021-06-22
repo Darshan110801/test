@@ -12,18 +12,18 @@ def home(request):
         'caption_info': ''
     }
     carousels = [{
-        'image': 'images/im1.jpg',
+        'image': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im1.jpg?raw=true',
         'caption_title': 'We are Astro Club,VNIT',
         'caption': 'Are you one of those Space buffs? Wanna hone you amateur skills in Astronomy? Look no'
                    ' further you have reached your destination! Welcome to Astro Club VNIT!'
     }, {
-        'image': 'images/im2.jpg',
+        'image': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im2.jpg?raw=true',
         'caption_title': 'Sky is the limit',
         'caption': 'Have a look at this beautiful image🤩, capturing the Star trails, taken by our club '
                    'member Ojas Sharma.'
     },
         {
-            'image': 'images/im4.jpg',
+            'image': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im4.jpg?raw=true',
             'caption_title': '',
             'caption': 'Astronomy Club of VNIT, Ashlesha invites you to gaze upon the heavens and beyond and see'
                        ' the unfolding of the cosmic miracle.'
@@ -45,30 +45,30 @@ def about(request):
     context = {
         'carousels': [
             {
-                'image': 'images/about 1.jpg',
+                'image': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/about%201.jpg?raw=true',
                 'caption_title': '',
                 'caption_info': ''
             },
             {
-                'image': 'images/about 2.jpg',
+                'image': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/about%202.jpg?raw=true',
                 'caption_title': '',
                 'caption_info': ''
             }
             ,
             {
-                'image': 'images/about 3.jpg',
+                'image': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/about%203.jpg?raw=true',
                 'caption_title': '',
                 'caption_info': ''
             }
             ,
             {
-                'image': 'images/about 4.jpg',
+                'image': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/about%204.jpg?raw=true',
                 'caption_title': '',
                 'caption_info': ''
             }
             ,
             {
-                'image': 'images/about 5.jpg',
+                'image': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/about%205.jpg?raw=true',
                 'caption_title': '',
                 'caption_info': ''
             }
@@ -92,32 +92,7 @@ def events(request):
     context = {
         'events': []
     }
-    context['events'].append({
-        'title': 'Astro Quiz',
-        'description': 'We are organising a quiz for astro-geeks !!! <br> It will contain 50 Questions <br> '
-                       'time duration is 50 min.<br>Tighten your knowledge up for the same !!',
-        'main_link_desc': 'Apply here',
-        'main_link': 'https://www.google.com',
-        'additional_links': [
-            {'desc': 'Additional link one', 'link': 'https://www.facebook.com'},
-            {'desc': 'Additional link two', 'link': 'https://www.facebook.com'}
-
-        ]
-
-    })
-    context['events'].append({
-        'title': 'Astro Quiz',
-        'description': 'We are organising a quiz for astro-geeks !!! <br> It will contain 50 Questions <br> '
-                       'time duration is 50 min.<br>Tighten your knowledge up for the same !!',
-        'main_link_desc': 'Apply here',
-        'main_link': 'https://www.google.com',
-        'additional_links': [
-            {'desc': 'Additional link one', 'link': 'https://www.facebook.com'},
-            {'desc': 'Additional link two', 'link': 'https://www.facebook.com'}
-
-        ],
-    })
-
+    
     if len(context['events']) != 0:
         context['events'][0]['active'] = 'active'
         return render(request, 'events.html', context)
@@ -140,7 +115,7 @@ def apod(request):
         'active': ''
     }
     if len(Prev30.objects.all()) == 0 or len(
-            Prev30.objects.all().filter(date=datetime.today().strftime('%Y-%m-%d'))) == 0:
+            Prev30.objects.all().filter(date=(datetime.today()-timedelta(days=1)).strftime('%Y-%m-%d'))) == 0:
         todays_date = (datetime.today()-timedelta(days=1)).strftime('%Y-%m-%d')
         date_month_before = (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')
         print(date_month_before,todays_date)
