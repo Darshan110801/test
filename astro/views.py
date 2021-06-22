@@ -136,7 +136,7 @@ def apod(request):
     else:
         todays_date = datetime.today()-timedelta(days=1)
         for day_back in range(0, 30):
-            entry = Prev30.objects.all().get(date=(todays_date - timedelta(day_back)).strftime('%Y-%m-%d'))
+            entry = Prev30.objects.all().filter(date=(todays_date - timedelta(day_back)).strftime('%Y-%m-%d'))[0]
             new_context_data = dict()
             new_context_data['url'] = entry.url
             new_context_data['date'] = entry.date
