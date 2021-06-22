@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+   <div>
     <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000">
         <ol class="carousel-indicators">
             {% for carousel in carousels %}
@@ -42,4 +43,5 @@
         </a>
     </div>
     <!-- /.carousel -->
+</div>
 {% endblock content %}
