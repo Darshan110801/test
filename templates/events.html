@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% load static %}
+
 
 {% block title %}
     Upcoming Events
 {% endblock title %}
 
 {% block content %}
-    {% with BG_IMG='images/bg3.jpg'  BG_CARD='images/bgCard.jpg' %}
-        <div style="background-image: url('{% static BG_IMG %}');background-attachment:fixed;background-size : cover;">
+    {% with BG_IMG='https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/bg3.jpg?raw=true'  BG_CARD='images/bgCard.jpg' %}
+        <div style="background-image: url('{{ BG_IMG }}');background-attachment:fixed;background-size : cover;">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
                 <ol class="carousel-indicators">
