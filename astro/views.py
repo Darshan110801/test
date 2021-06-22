@@ -114,35 +114,34 @@ def apod(request):
         'prev_30': [],  # array of objects of the form img_info
         'active': ''
     }
-    for object in Prev30.objects.all():
-        object.delete()
-#     if len(Prev30.objects.all()) == 0 or len(
-#             Prev30.objects.all().filter(date=(datetime.today()-timedelta(days=1)).strftime('%Y-%m-%d'))) == 0:
-#         todays_date = (datetime.today()-timedelta(days=1)).strftime('%Y-%m-%d')
-#         date_month_before = (datetime.today() - timedelta(days=30)).strftime('%Y-%m-%d')
-#         print(date_month_before,todays_date)
-#         response = requests.get(f'{api_url}?start_date={date_month_before}&end_date={todays_date}&api_key={my_key}')
-#         context['prev_30'] = json.loads(response.text)[::-1]
-#         print(type(context['prev_30']))
-#         print(context['prev_30'])
-#         for i in context['prev_30']:
-#             entry = Prev30()
-#             print(i)
-#             entry.url = i['url']
-#             entry.date = i['date']
-#             entry.title = i['title']
-#             entry.explanation = i['explanation']
-#             entry.save()
+   
+    if len(Prev30.objects.all()) == 0 or len(
+            Prev30.objects.all().filter(date=(datetime.today()-timedelta(days=1)).strftime('%Y-%m-%d'))) == 0:
+        todays_date = (datetime.today()-timedelta(days=1)).strftime('%Y-%m-%d')
+        date_month_before = (datetime.today() - timedelta(days=30)).strftime('%Y-%m-%d')
+        print(date_month_before,todays_date)
+        response = requests.get(f'{api_url}?start_date={date_month_before}&end_date={todays_date}&api_key={my_key}')
+        context['prev_30'] = json.loads(response.text)[::-1]
+        print(type(context['prev_30']))
+        print(context['prev_30'])
+        for i in context['prev_30']:
+            entry = Prev30()
+            print(i)
+            entry.url = i['url']
+            entry.date = i['date']
+            entry.title = i['title']
+            entry.explanation = i['explanation']
+            entry.save()
 
-#     else:
-#         todays_date = datetime.today()-timedelta(days=1)
-#         for day_back in range(0, 30):
-#             entry = Prev30.objects.all().get(date=(todays_date - timedelta(day_back)).strftime('%Y-%m-%d'))
-#             new_context_data = dict()
-#             new_context_data['url'] = entry.url
-#             new_context_data['date'] = entry.date
-#             new_context_data['title'] = entry.title
-#             new_context_data['explanation'] = entry.explanation
-#             context['prev_30'].append(new_context_data)
-#     context['prev_30'][0]['active'] = 'active'
-#     return render(request, 'apod.html', context)
+    else:
+        todays_date = datetime.today()-timedelta(days=1)
+        for day_back in range(0, 30):
+            entry = Prev30.objects.all().get(date=(todays_date - timedelta(day_back)).strftime('%Y-%m-%d'))
+            new_context_data = dict()
+            new_context_data['url'] = entry.url
+            new_context_data['date'] = entry.date
+            new_context_data['title'] = entry.title
+            new_context_data['explanation'] = entry.explanation
+            context['prev_30'].append(new_context_data)
+    context['prev_30'][0]['active'] = 'active'
+    return render(request, 'apod.html', context)
