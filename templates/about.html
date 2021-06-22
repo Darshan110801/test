@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block title %}
     About us
@@ -20,10 +19,10 @@
                             <div class="carousel-item {{ carousel.active }}">
                                 <a href="https://bootstrapcreative.com/">
                                     <picture>
-                                        <source srcset="{% static IMAGE_PATH %}" media="(min-width: 1400px)">
-                                        <source srcset="{% static IMAGE_PATH %}" media="(min-width: 769px)">
-                                        <source srcset="{% static IMAGE_PATH %}" media="(min-width: 577px)">
-                                        <img srcset="{% static IMAGE_PATH %}" alt="responsive image"
+                                        <source srcset="{{ IMAGE_PATH }}" media="(min-width: 1400px)">
+                                        <source srcset="{{ IMAGE_PATH }}" media="(min-width: 769px)">
+                                        <source srcset="{{ IMAGE_PATH }}" media="(min-width: 577px)">
+                                        <img srcset="{{ IMAGE_PATH }}" alt="responsive image"
                                              class="d-block img-fluid">
                                     </picture>
 
