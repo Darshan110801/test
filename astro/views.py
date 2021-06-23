@@ -133,6 +133,8 @@ def apod(request):
         context['prev_30'] = json.loads(response.text)[::-1]
         print(type(context['prev_30']))
         print(context['prev_30'])
+        for obj in Prev30.objects.all():
+            obj.delete()
         for i in context['prev_30']:
             entry = Prev30()
             print(i)
@@ -145,12 +147,15 @@ def apod(request):
     else:
         todays_date = datetime.today()-timedelta(days=1)
         for day_back in range(0, 29):
-            entry = Prev30.objects.all().filter(date=(todays_date - timedelta(day_back)).strftime('%Y-%m-%d'))[0]
-            new_context_data = dict()
-            new_context_data['url'] = entry.url
-            new_context_data['date'] = entry.date
-            new_context_data['title'] = entry.title
-            new_context_data['explanation'] = entry.explanation
-            context['prev_30'].append(new_context_data)
+            try:
+            	entry = Prev30.objects.all().filter(date=(todays_date - timedelta(day_back)).strftime('%Y-%m-%d'))[0]
+            	new_context_data = dict()
+            	new_context_data['url'] = entry.url
+            	new_context_data['date'] = entry.date
+            	new_context_data['title'] = entry.title
+            	new_context_data['explanation'] = entry.explanation
+            	context['prev_30'].append(new_context_data)
+            except:
+            	print('not found for today')
     context['prev_30'][0]['active'] = 'active'
     return render(request, 'apod.html', context)
