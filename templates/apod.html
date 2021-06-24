@@ -16,7 +16,7 @@
             {% for image in prev_30 %}
                 <div class="carousel-item {{ image.active }}">
                     <div class="card mb-3" style = "background-color: lightgrey !important;">
-                        <img class="card-img-top" src="{{ image.url }}" alt="Seems like NASA published no image on this day..">
+                        <a href = "{{image.url}}" target = "_blank"><img class="card-img-top" src="{{ image.url }}" alt="{{Link to the imagery content.}}"></a>
                         <div class="card-body">
                             <h5 class="card-title">{{ image.title }}</h5>
                             <p class="card-text">{{ image.explanation }}</p>
