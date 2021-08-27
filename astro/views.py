@@ -171,7 +171,7 @@ def articles(request):
     article1 = {
         "id": 1,
         "link": "/article/1",
-        "drive_link": "https://drive.google.com/file/d/1NY32LkuJgIDEJYgko3z5GzzQ-B7mOfhx/view?usp=sharing",
+        "drive_link": "https://drive.google.com/u/0/uc?id=1NY32LkuJgIDEJYgko3z5GzzQ-B7mOfhx&export=download",
         "title": "STELLAR CLASSIFICATION",
         "summary": '''&emsp;Stellar classification is the classification of stars according to their size,
 temperature and spectral characteristics. According to the much used MorganKeenan table, the classification of stars has evolved into seven different classes or
@@ -186,7 +186,7 @@ ones are Red stars. Hence colour of the star is dependent on its Size and
 Temperature. This is similar to what we observe with the black bodies at very high
 temperatures. Usually most blue stars are very hot and are therefore classed as
 'O' stars, while the coolest are red stars, and are classified into the 'M' class.''',
-        "cover_image": "https://raw.githubusercontent.com/Darshan110801/VNIT-Astronomy-Club-Website/master/static/images/800px-Morgan-Keenan_spectral_classification.png",
+        "cover_image":  "https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/hr-diagram-credit-nso.png?raw=true",
         "images": [
             "https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/Stellar%20Classification%20Coverpage.jfif?raw=true",
             "https://raw.githubusercontent.com/Darshan110801/VNIT-Astronomy-Club-Website/master/static/images/800px-Morgan-Keenan_spectral_classification.png",
