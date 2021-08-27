@@ -169,21 +169,40 @@ def articles(request):
 
     }
     article1 = {
-        "link": "https://drive.google.com/file/d/1NY32LkuJgIDEJYgko3z5GzzQ-B7mOfhx/view?usp=sharing",
+        "id": 1,
+        "link": "/article/1",
+        "drive_link": "https://drive.google.com/file/d/1NY32LkuJgIDEJYgko3z5GzzQ-B7mOfhx/view?usp=sharing",
         "title": "STELLAR CLASSIFICATION",
-        "summary": '''Stellar classification is the classification of stars according to their size,
+        "summary": '''&emsp;Stellar classification is the classification of stars according to their size,
 temperature and spectral characteristics. According to the much used MorganKeenan table, the classification of stars has evolved into seven different classes or
 groups. This system was created by Annie Jump Cannon, an American
 Astronomer. Cannon developed this system on the basis of Balmer spectral lines,
 later characterization according to size and temperature were approached. The
-seven groups are O, B, A, F, G, K and M.''',
+seven groups are O, B, A, F, G, K and M.''' + '<br/><br/>' + '''&emsp;Stars classified in the 'O' group are the most massive and hottest, with
+temperatures exceeding 30,000°C, while those in the 'M' group are the smallest
+and coolest, with temperatures less than 3,000°C.
+A star with a really high temperature is a Blue star while those quite the smallest
+ones are Red stars. Hence colour of the star is dependent on its Size and
+Temperature. This is similar to what we observe with the black bodies at very high
+temperatures. Usually most blue stars are very hot and are therefore classed as
+'O' stars, while the coolest are red stars, and are classified into the 'M' class.''',
+        "cover_image": "https://raw.githubusercontent.com/Darshan110801/VNIT-Astronomy-Club-Website/master/static/images/800px-Morgan-Keenan_spectral_classification.png",
         "images": [
             "https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/Stellar%20Classification%20Coverpage.jfif?raw=true",
             "https://raw.githubusercontent.com/Darshan110801/VNIT-Astronomy-Club-Website/master/static/images/800px-Morgan-Keenan_spectral_classification.png",
             "https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/hr-diagram-credit-nso.png?raw=true",
 
-        ]
+        ],
+        "date": "July 27, 2021"
 
     }
     context['articles'].append(article1)
     return render(request, "articles.html", context)
+
+
+def article(request, num):
+    articles_table = {
+        1: "Articles/stellar_Classification_final.html"
+
+    }
+    return render(request, articles_table[num])
