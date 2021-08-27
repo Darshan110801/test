@@ -23,6 +23,7 @@ urlpatterns = [
    path('about',views.about,name = "aboutPage"),
    path('events',views.events,name = "eventsPage"),
    path('otherSources',views.other_sources,name = "otherSourcesPage"),
-   path('apod',views.apod,name = 'apod')
+   path('apod',views.apod,name = 'apod'),
+   path("articles",views.articles,name = "articles")
 
 ]
