@@ -202,7 +202,7 @@ temperatures. Usually most blue stars are very hot and are therefore classed as
 
 def article(request, num):
     articles_table = {
-        1: "Article1"
+        1: "Article1.html"
 
     }
     return render(request, articles_table[num])
