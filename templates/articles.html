@@ -2,10 +2,10 @@
 {% block defineStyle %}
     <style>
         body {
-           background-image: url("https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/back_drop_mod.jpg?raw=true");
-            background-repeat: repeat;
-            background-attachment: fixed;
-            background-size: cover;
+           background-image: url("https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/back_drop_mod1.jpg?raw=true");
+            background-repeat: repeat !important;
+            background-attachment: fixed !important;
+            background-size: cover !important;
         }
     </style>
 {% endblock defineStyle %}
@@ -15,11 +15,11 @@
 
 {% block content %}
     {% autoescape off %}
-        <div class="container">
-            <br><br><br><br><br>
+         <br><br><br><br><br>
+        <div>
             {% for article in articles %}
                 <div class="card mx-5 my-5" style="background-color: honeydew">
-                    <img class="card-img-top" src="{{ article.cover_image }}" alt="Card image cap">
+                    <img class="card-img-top" src="{{ article.cover_image }}"  alt="Card image cap">
                     <div class="card-body container">
                         <br>
                         <h3 class="card-title text-center">{{ article.title }}</h3>
