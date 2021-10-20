@@ -6,6 +6,7 @@
             background-repeat: repeat !important;
             background-attachment: fixed !important;
             background-size: cover !important;
+            font-family: 'Roboto', sans-serif !important;
         }
     </style>
 {% endblock defineStyle %}
@@ -22,7 +23,7 @@
                     <img class="card-img-top" src="{{ article.cover_image }}" alt="Card image cap">
                     <div class="card-body container">
                         <br>
-                        <h3 class="card-title text-center">{{ article.title }}</h3>
+                        <h3 class="card-title text-center" style="font-weight: bold">{{ article.title }}</h3>
                         <br>
 
                         <p class="card-text">

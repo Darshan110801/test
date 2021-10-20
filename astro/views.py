@@ -196,13 +196,31 @@ temperatures. Usually most blue stars are very hot and are therefore classed as
         "date": "July 27, 2021"
 
     }
+
+    article2 = {
+        "id": 2,
+        "link": "/article/2",
+        "drive_link": "https://drive.google.com/uc?id=1yjc4bRBqszeq8TFGKQuYxzeUobqgZkac&export=download",
+        "title": "JAMES WEBB TELESCOPE (JWST)",
+        "summary": '''The James Webb telescope (JWST) is all-ready to launch on the momentous day of 18th December 2021 on Ariane 5 rocket from French Guiana, NASA collaborated with ESA and CSA to develop this complex telescope, which is the successor of the Hubble space telescope. The project was eventually started from 1996 and in 2002 the Next Generation Space Telescope (NGST) was renamed to JWST to give tribute to James Edwin Webb who was an American government official, who served as undersecretary of state (1949-1952). He was also the second appointed administrator of NASA ( 14th Feb 1961-7th Oct 1968 ). This telescope will start it’s functioning after six months of the launch and the engineers behind the whole project are Northrop Grumman engineers, they all are very excited for the launch as they have given all their efforts to build this revolutionary telescope.
+''',
+        "cover_image": "https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/telescope.jpg?raw=true",
+        "images": [
+
+
+        ],
+        "date": "October 20, 2021"
+
+    }
+    context['articles'].append(article2)
     context['articles'].append(article1)
     return render(request, "articles.html", context)
 
 
 def article(request, num):
     articles_table = {
-        1: "Article1.html"
+        1: "Article1.html",
+        2: "Article2.html",
 
     }
     return render(request, articles_table[num])
