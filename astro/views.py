@@ -224,3 +224,8 @@ def article(request, num):
 
     }
     return render(request, articles_table[num])
+
+
+def astronomers(request):
+
+    return render(request,'astronomers.html')

@@ -25,6 +25,8 @@ urlpatterns = [
    path('otherSources',views.other_sources,name = "otherSourcesPage"),
    path('apod',views.apod,name = 'apod'),
    path("articles",views.articles,name = "articles"),
-   path("article/<int:num>",views.article,name = "article")
+   path("article/<int:num>",views.article,name = "article"),
+   path("great_astronomers",views.astronomers,name = "great astronomers"),
+
 
 ]
