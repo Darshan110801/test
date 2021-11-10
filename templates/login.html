@@ -96,13 +96,13 @@
 {% endblock defineStyle %}
 
 {% block content %}
-    {% if show_messages %}
-        {% for message in messages %}
-            <div class="alert alert-warning">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
+
+    {% for message in messages %}
+        <div class="alert alert-warning">
+            {{ message }}
+        </div>
+    {% endfor %}
+
 
     <div class="container my-5">
         <div class="d-flex justify-content-center h-100">

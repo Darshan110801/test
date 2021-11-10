@@ -260,14 +260,13 @@ def member_home(request):
     global logged_in
     show_messages = False
     if not logged_in:
-        return render(request, 'login.html', {"show_messages": show_messages})
+        return redirect('/login_member')
     else:
         return render(request, 'member_index.html',context={'carousels' : home_carousels})
 
 
 def login_member(request):
     global logged_in
-    show_messages = False
     if logged_in:
         return render(request, 'member_index.html',context={'carousels' : home_carousels})
     if request.method == "POST":
@@ -280,8 +279,8 @@ def login_member(request):
             messages.error(request, "Username or Password is incorrect")
             logged_in = False
             show_messages = True
-            return render(request, 'login.html', {"show_messages": show_messages})
-    return render(request, 'login.html', {"show_messages": show_messages})
+            return redirect('/login_member')
+    return render(request, 'login.html')
 
 
 def logout(request):
@@ -292,7 +291,7 @@ def logout(request):
 
 def astronomer_crud(request):
     if not logged_in:
-        return render(request, 'login.html')
+        return redirect('/login_member')
     if request.method == "POST":
         name_ = request.POST.get('name')
         image_link_ = request.POST.get('image_link')
