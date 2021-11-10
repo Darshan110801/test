@@ -278,6 +278,7 @@ def login_member(request):
             return render(request, 'member_index.html',context={'carousels' : home_carousels})
         else:
             messages.error(request, "Username or Password is incorrect")
+            logged_in = False
             show_messages = True
             return render(request, 'login.html', {"show_messages": show_messages})
     return render(request, 'login.html', {"show_messages": show_messages})
