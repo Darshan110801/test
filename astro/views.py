@@ -2,46 +2,54 @@ import json
 from datetime import datetime, timedelta
 
 import requests
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 
 from astro.admin import Prev30
+from astro.models import Astronomer
+
+logged_in = False
+
+home_carousels = [{
+    'images': {
+        'pc': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im1.jpg?raw=true',
+        'mob': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im1m.jpg?raw=true'
+    },
+    'caption_title': 'We are Astro Club,VNIT',
+    'caption': 'Are you one of those Space buffs? Wanna hone you amateur skills in Astronomy? Look no'
+               ' further you have reached your destination! Welcome to Astro Club VNIT!'
+}, {
+    'images': {
+        'pc': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im2.jpg?raw=true',
+        'mob': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im2m.jpg?raw=true'
+    },
+    'caption_title': 'Sky is the limit',
+    'caption': 'Have a look at this beautiful image🤩, capturing the Star trails, taken by our club '
+               'member Ojas Sharma.'
+},
+    {
+        'images': {
+            'pc': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im4.jpg?raw=true',
+            'mob': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im4m.jpg?raw=true'
+        },
+        'caption_title': '',
+        'caption': 'Astronomy Club of VNIT, Ashlesha invites you to gaze upon the heavens and beyond and see'
+                   ' the unfolding of the cosmic miracle.'
+    }
+]
 
 
 def home(request):
+    print(logged_in)
     carousel = {
         'image': '',
         'caption_title': '',
         'caption_info': ''
     }
-    carousels = [{
-        'images': {
-            'pc': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im1.jpg?raw=true',
-            'mob': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im1m.jpg?raw=true'
-        },
-        'caption_title': 'We are Astro Club,VNIT',
-        'caption': 'Are you one of those Space buffs? Wanna hone you amateur skills in Astronomy? Look no'
-                   ' further you have reached your destination! Welcome to Astro Club VNIT!'
-    }, {
-        'images': {
-            'pc': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im2.jpg?raw=true',
-            'mob': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im2m.jpg?raw=true'
-        },
-        'caption_title': 'Sky is the limit',
-        'caption': 'Have a look at this beautiful image🤩, capturing the Star trails, taken by our club '
-                   'member Ojas Sharma.'
-    },
-        {
-            'images': {
-                'pc': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im4.jpg?raw=true',
-                'mob': 'https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/im4m.jpg?raw=true'
-            },
-            'caption_title': '',
-            'caption': 'Astronomy Club of VNIT, Ashlesha invites you to gaze upon the heavens and beyond and see'
-                       ' the unfolding of the cosmic miracle.'
-        }
-    ]
+
     context = {
-        'carousels': carousels
+        'carousels': home_carousels,
+        'logged_in': logged_in
     }
     context['carousels'][0]['active'] = 'active'
     return render(request, 'index.html', context)
@@ -83,7 +91,8 @@ def about(request):
                 'caption_title': '',
                 'caption_info': ''
             }
-        ]
+        ],
+        'logged_in': logged_in
     }
     context['carousels'][0]['active'] = 'active'
     return render(request, 'about.html', context)
@@ -101,19 +110,20 @@ def events(request):
 
     }
     context = {
-        'events': []
+        'events': [],
+        'logged_in': logged_in
     }
 
     if len(context['events']) != 0:
         context['events'][0]['active'] = 'active'
         return render(request, 'events.html', context)
     else:
-        return render(request, 'noevents.html')
+        return render(request, 'noevents.html', {'logged_in': logged_in})
 
 
 def other_sources(request):
     context = {
-
+        'logged_in': logged_in
     }
     return render(request, 'otherSources.html', context)
 
@@ -123,7 +133,8 @@ def apod(request):
     my_key = 'gE4OwsHm4NSF3efofSsGRvxcJeT3abrR05xk3Usd'
     context = {
         'prev_30': [],  # array of objects of the form img_info
-        'active': ''
+        'active': '',
+        'logged_in': logged_in
     }
 
     if len(Prev30.objects.all()) == 0 or len(
@@ -166,7 +177,7 @@ def apod(request):
 def articles(request):
     context = {
         "articles": [],
-
+        "logged_in": logged_in
     }
     article1 = {
         "id": 1,
@@ -186,7 +197,7 @@ ones are Red stars. Hence colour of the star is dependent on its Size and
 Temperature. This is similar to what we observe with the black bodies at very high
 temperatures. Usually most blue stars are very hot and are therefore classed as
 'O' stars, while the coolest are red stars, and are classified into the 'M' class.''',
-        "cover_image":  "https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/hr-diagram-credit-nso.png?raw=true",
+        "cover_image": "https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/hr-diagram-credit-nso.png?raw=true",
         "images": [
             "https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/Stellar%20Classification%20Coverpage.jfif?raw=true",
             "https://raw.githubusercontent.com/Darshan110801/VNIT-Astronomy-Club-Website/master/static/images/800px-Morgan-Keenan_spectral_classification.png",
@@ -207,7 +218,6 @@ temperatures. Usually most blue stars are very hot and are therefore classed as
         "cover_image": "https://github.com/Darshan110801/VNIT-Astronomy-Club-Website/blob/master/static/images/telescope.jpg?raw=true",
         "images": [
 
-
         ],
         "date": "October 20, 2021"
 
@@ -223,9 +233,74 @@ def article(request, num):
         2: "Article2.html",
 
     }
-    return render(request, articles_table[num])
+    return render(request, articles_table[num], {"logged_in": logged_in})
 
 
 def astronomers(request):
+    context_ = {
+        "logged_in": logged_in,
+        "astronomers": [
 
-    return render(request,'astronomers.html')
+        ]
+    }
+    for astronomer in Astronomer.objects.all():
+        context_['astronomers'].append({
+            'name': astronomer.name,
+            'image_link': astronomer.image_link,
+            'yob': astronomer.yob,
+            'yod': astronomer.yod,
+            'books': astronomer.books,
+            'summary': astronomer.summary,
+            'wiki_link': astronomer.wiki_link
+        })
+    return render(request, 'astronomers.html', context=context_)
+
+
+def member_home(request):
+    global logged_in
+    show_messages = False
+    if not logged_in:
+        return render(request, 'login.html', {"show_messages": show_messages})
+    else:
+        return render(request, 'member_index.html',context={'carousels' : home_carousels})
+
+
+def login_member(request):
+    global logged_in
+    show_messages = False
+    if logged_in:
+        return render(request, 'member_index.html',context={'carousels' : home_carousels})
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        if str(username).strip() == "astroclub2021" and str(password).strip() == "vp_random":
+            logged_in = True
+            return render(request, 'member_index.html',context={'carousels' : home_carousels})
+        else:
+            messages.error(request, "Username or Password is incorrect")
+            show_messages = True
+            return render(request, 'login.html', {"show_messages": show_messages})
+    return render(request, 'login.html', {"show_messages": show_messages})
+
+
+def logout(request):
+    global logged_in
+    logged_in = False
+    return redirect('/')
+
+
+def astronomer_crud(request):
+    if not logged_in:
+        return render(request, 'login.html')
+    if request.method == "POST":
+        name_ = request.POST.get('name')
+        image_link_ = request.POST.get('image_link')
+        yob_ = request.POST.get('yob')
+        yod_ = request.POST.get('yod')
+        books_ = request.POST.get('books')
+        summary_ = request.POST.get('summary')
+        wiki_link_ = request.POST.get('wiki_link')
+        new_astronomer = Astronomer(name=name_, image_link=image_link_, yob=yob_, yod=yod_, books=books_,
+                                    summary=summary_, wiki_link=wiki_link_)
+        new_astronomer.save()
+    return render(request, "astronomer_crud.html")

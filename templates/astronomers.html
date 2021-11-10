@@ -12,6 +12,7 @@
             background-size: cover !important;
             font-family: 'Roboto', sans-serif !important;
         }
+
     </style>
 {% endblock defineStyle %}
 
@@ -28,73 +29,36 @@
         </ol>
 
         <div class="carousel-inner">
-
-            <div class="carousel-item active">
-                <div class="container my-5">
-                    <div class="card-deck">
-                        <div class="card" style="width:400px">
-                            <img class="card-img-top"
-                                 src="https://www.betterteam.com/images/astronomer-job-description-2700x2700-2020121.jpeg?crop=4:3,smart&width=1200&dpr=2"
-                                 alt="Card image" style="width:100%">
-                            <div class="card-body">
-                                <h4 class="card-title text-center">Jane Doe</h4>
-                                <h6 class="text-muted text-center">1920 - 2021</h6>
+            {% for astronomer in astronomers %}
+                <div class="carousel-item active">
+                    <div class="my-5 mx-5">
+                        <div class="card">
+                            <div class="astronomer-image" style="background-color: transparent !important;">
+                                <img class="card-img-top"
+                                     src="{{ astronomer.image_link }}"
+                                     alt="Card image"
+                                     style="width:200px;height:200px;border-radius: 100%;margin-left: calc(50% - 100px);margin-top: 10px">
+                                <h4 class="card-title text-center">{{ astronomer.name }}</h4>
+                                <h6 class="text-muted text-center">{{ astronomer.yob }} - {{ astronomer.yod }}</h6>
                                 <hr/>
+                            </div>
+                            <div class="card-body container">
                                 <br/>
-                                <p class="card-text">Some example text some example text. Jane Doe is an architect and
-                                    engineer</p>
-                                <br>
-                                <div class="text-center"><a href="#" class="btn btn-primary text-center">Read more.</a>
+                                <div class="books">
+                                    <b>Books : </b> <br/>
+                                    <p>{{ astronomer.books }}</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card bg-white">
-                            <div class="card-body text-center">
-                                <p class="card-text">Some text inside the second card</p>
-                            </div>
-                        </div>
-                        <div class="card bg-white">
-                            <div class="card-body text-center">
-                                <p class="card-text">Some text inside the third card</p>
+                                <hr/>
+                                <p class="card-text">{{ astronomer.summary }}</p>
+                                <br>
+                                <br/>
+                                <div class="text-right"><a href="{{ astronomer.wiki_link }}" target="_blank" class="btn btn-primary text-center">Read more.</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-              <div class="carousel-item">
-                <div class="container my-5">
-                    <div class="card-deck text-center">
-                        <div class="card" style="width:400px">
-                            <img class="card-img-top"
-                                 src="https://www.betterteam.com/images/astronomer-job-description-2700x2700-2020121.jpeg?crop=4:3,smart&width=1200&dpr=2"
-                                 alt="Card image" style="width:100%">
-                            <div class="card-body">
-                                <h4 class="card-title text-center">Jane Doe</h4>
-                                <h6 class="text-muted text-center">1920 - 2021</h6>
-                                <hr/>
-                                <br/>
-                                <p class="card-text">Some example text some example text. Jane Doe is an architect and
-                                    engineer</p>
-                                <br>
-                                <div class="text-center"><a href="#" class="btn btn-primary text-center">Read more.</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card bg-white">
-                            <div class="card-body text-center">
-                                <p class="card-text">Some text inside the second card</p>
-                            </div>
-                        </div>
-                        <div class="card bg-white">
-                            <div class="card-body text-center">
-                                <p class="card-text">Some text inside the third card</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
+            {% endfor %}
         </div>
 
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

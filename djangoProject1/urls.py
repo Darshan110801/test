@@ -15,18 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from astro import views
-urlpatterns = [
-   path('admin/',admin.site.urls),
-   path('',views.home,name = 'homePage'),
-   path('home',views.home,name = 'nextHomePage'),
-   path('about',views.about,name = "aboutPage"),
-   path('events',views.events,name = "eventsPage"),
-   path('otherSources',views.other_sources,name = "otherSourcesPage"),
-   path('apod',views.apod,name = 'apod'),
-   path("articles",views.articles,name = "articles"),
-   path("article/<int:num>",views.article,name = "article"),
-   path("great_astronomers",views.astronomers,name = "great astronomers"),
 
+from astro import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.home, name='homePage'),
+    path('home', views.home, name='nextHomePage'),
+    path('about', views.about, name="aboutPage"),
+    path('events', views.events, name="eventsPage"),
+    path('otherSources', views.other_sources, name="otherSourcesPage"),
+    path('apod', views.apod, name='apod'),
+    path("articles", views.articles, name="articles"),
+    path("article/<int:num>", views.article, name="article"),
+    path("great_astronomers", views.astronomers, name="great astronomers"),
+    path("login_member", views.login_member, name="login_member"),
+    path("member_home", views.member_home, name="member_home"),
+    path("logout", views.logout, name="logout"),
+    path("logged_member/astronomer_crud",views.astronomer_crud,name="astronomer_crud"),
 
 ]

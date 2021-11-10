@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 
+
 class Prev30(models.Model):
     date = models.CharField(max_length=11, default='')
     url = models.TextField(default='')
@@ -8,10 +9,11 @@ class Prev30(models.Model):
     title = models.TextField(default='')
 
 
-class astronomers(models.Model):
+class Astronomer(models.Model):
     name = models.CharField(max_length=1000, default='')
-    image_link = models.TextField()
-    yob = models.IntegerField(default=0)
-    yod = models.IntegerField(default=0)
+    image_link = models.TextField(default='')
+    yob = models.CharField(default='', max_length=5)
+    yod = models.CharField(default='', max_length=5)
     books = models.JSONField(default='')
-    info = models.TextField(default='')
+    summary = models.TextField(default='')
+    wiki_link = models.TextField(default='')

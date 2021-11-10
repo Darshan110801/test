@@ -77,56 +77,64 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/"
-                ><strong style="color: wheat"><b>Home </b></strong
-                ><span class="sr-only"></span
-                ></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/about"
-                ><strong style="color: wheat"><b>About Us</b></strong
-                ><span class="sr-only"></span
-                ></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/events"
-                ><strong style="color: wheat"><b>Events</b></strong
-                ><span class="sr-only"></span
-                ></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/articles"
-                ><strong style="color: wheat"><b>Articles</b></strong
-                ><span class="sr-only"></span
-                ></a>
-            </li>
-            <li class="nav-item active">
-                <a
-                        class="nav-link"
-                        href="https://eshanojas2916.github.io/Solar_System/index.html"
-                ><strong style="color: wheat"><b>Solar System</b></strong
-                ><span class="sr-only"></span
-                ></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/apod"
-                ><strong style="color: wheat"><b>Astro-resources</b></strong
-                ><span class="sr-only"></span
-                ></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="https://darshan110801.github.io/Astro-quiz/"
-                ><strong style="color: wheat"><b>Astro-quiz</b></strong
-                ><span class="sr-only"></span
-                ></a>
-            </li>
-             <li class="nav-item active">
-                <a class="nav-link" href="/great_astronomers">
-                <strong style="color: wheat"><b>Great Astronomers</b></strong
-                ><span class="sr-only"></span
-                ></a>
-            </li>
+            {% block nav_links %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/"
+                    ><strong style="color: wheat"><b>Home </b></strong
+                    ><span class="sr-only"></span
+                    ></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/about"
+                    ><strong style="color: wheat"><b>About Us</b></strong
+                    ><span class="sr-only"></span
+                    ></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/events"
+                    ><strong style="color: wheat"><b>Events</b></strong
+                    ><span class="sr-only"></span
+                    ></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/articles"
+                    ><strong style="color: wheat"><b>Articles</b></strong
+                    ><span class="sr-only"></span
+                    ></a>
+                </li>
+                <li class="nav-item active">
+                    <a
+                            class="nav-link"
+                            href="https://eshanojas2916.github.io/Solar_System/index.html"
+                    ><strong style="color: wheat"><b>Solar System</b></strong
+                    ><span class="sr-only"></span
+                    ></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/apod"
+                    ><strong style="color: wheat"><b>Astro-resources</b></strong
+                    ><span class="sr-only"></span
+                    ></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="https://darshan110801.github.io/Astro-quiz/"
+                    ><strong style="color: wheat"><b>Astro-quiz</b></strong
+                    ><span class="sr-only"></span
+                    ></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/great_astronomers">
+                        <strong style="color: wheat"><b>Great Astronomers</b></strong
+                        ><span class="sr-only"></span
+                    ></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/login_member">
+                        <strong style="color: wheat"><b>Login as council member</b></strong
+                        ><span class="sr-only"></span
+                    ></a>
+                </li>
+            {% endblock nav_links %}
         </ul>
     </div>
 </nav>
