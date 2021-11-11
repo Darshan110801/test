@@ -247,8 +247,10 @@ def astronomers(request):
             'yod': astronomer.yod,
             'books': astronomer.books,
             'summary': astronomer.summary,
-            'wiki_link': astronomer.wiki_link
+            'wiki_link': astronomer.wiki_link,
+            'active': ''
         })
+    context_['astronomers'][0]['active'] = 'active'
     return render(request, 'astronomers.html', context=context_)
 
 
@@ -257,12 +259,12 @@ def member_home(request):
     if not request.user.is_authenticated:
         return redirect('/members/login_member')
     else:
-        return render(request, 'member_index.html', context={'carousels': home_carousels})
+        return render(request, 'member_privileges/member_index.html', context={'carousels': home_carousels})
 
 
 def login_member(request):
     if request.user.is_authenticated:
-        print(request.user.username,request.user.password)
+        print(request.user.username, request.user.password)
         return redirect('/members/member_home')
     if request.method == "POST":
         username = request.POST.get('username')
@@ -283,8 +285,8 @@ def logout_member(request):
     return redirect('/')
 
 
-@login_required(login_url='/members/loin_member')
-def astronomer_crud(request):
+@login_required(login_url='/members/login_member')
+def astronomer_crud_add(request):
     if request.method == "POST":
         name_ = request.POST.get('name')
         image_link_ = request.POST.get('image_link')
@@ -296,4 +298,21 @@ def astronomer_crud(request):
         new_astronomer = Astronomer(name=name_, image_link=image_link_, yob=yob_, yod=yod_, books=books_,
                                     summary=summary_, wiki_link=wiki_link_)
         new_astronomer.save()
-    return render(request, "astronomer_crud.html")
+        return redirect('/members/astronomer_crud')
+
+    return render(request, "member_privileges/astronomer_crud.html")
+
+
+@login_required(login_url='/members/login_member')
+def astronomer_crud_remove(request):
+    if request.method =="POST":
+        name=request.POST.get('name')
+        is_there = Astronomer.objects.filter(name=name).exists()
+        if is_there:
+            astronomer = Astronomer.objects.filter(name=name)[0]
+            astronomer.delete()
+            messages.success(request,"Data pertaining to the astronomer "+name+" is deleted successfully.")
+            return redirect('/members/astronomer_crud/remove')
+        else:
+            return redirect('/members/astronomer_crud/remove')
+    return render(request, 'member_privileges/astronomer_crud_remove.html')

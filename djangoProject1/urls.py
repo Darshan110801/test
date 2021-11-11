@@ -35,6 +35,7 @@ urlpatterns = [
     path('members/login_member',views.login_member,name="login_member"),
     path("members/member_home", views.member_home, name="member_home"),
     path("members/logout_member", views.logout_member, name="logout"),
-    path("members/astronomer_crud",views.astronomer_crud,name="astronomer_crud"),
+    path("members/astronomer_crud",views.astronomer_crud_add,name="astronomer_crud_add"),
+    path('members/astronomer_crud/remove',views.astronomer_crud_remove,name="astronomer_crud_remove")
 
 ]

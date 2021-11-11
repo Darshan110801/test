@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends '../base.html' %}
 {% block home_url %}
     "/members/member_home"
 {% endblock home_url %}
@@ -31,6 +31,9 @@
         </li>
     </ul>
 {% endblock nav_links %}
+{% block msgs %}
+
+{% endblock msgs %}
 {% block content %}
     <div>
         <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000">

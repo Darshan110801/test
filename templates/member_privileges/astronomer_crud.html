@@ -1,4 +1,4 @@
-{% extends 'member_index.html' %}
+{% extends 'member_privileges/member_index.html' %}
 {% load static %}
 {% block title %}
     CRUD Astronomer
@@ -40,10 +40,11 @@
 {% endblock %}
 {% block content %}
 
-    <div class='container mb-5 mt-5 text-center'
+    <div class='container mb-5 mt-5'
          style="background-image: url('{% static BG_IMG %}');background-attachment:fixed;background-size: cover;">
         <div class="scrollmenu">
-            <a href="/apod">Add Astronomer</a>
+            <a href="">Add Astronomer</a>
+             <a href="/members/astronomer_crud/remove">Remove Astronomer</a>
         </div>
     </div>
     {% block asked_content %}
