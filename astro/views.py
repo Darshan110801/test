@@ -3,12 +3,12 @@ from datetime import datetime, timedelta
 
 import requests
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from astro.admin import Prev30
 from astro.models import Astronomer
-
-logged_in = False
+from django.contrib.auth import authenticate, login, logout
 
 home_carousels = [{
     'images': {
@@ -40,7 +40,6 @@ home_carousels = [{
 
 
 def home(request):
-    print(logged_in)
     carousel = {
         'image': '',
         'caption_title': '',
@@ -48,8 +47,7 @@ def home(request):
     }
 
     context = {
-        'carousels': home_carousels,
-        'logged_in': logged_in
+        'carousels': home_carousels
     }
     context['carousels'][0]['active'] = 'active'
     return render(request, 'index.html', context)
@@ -91,8 +89,7 @@ def about(request):
                 'caption_title': '',
                 'caption_info': ''
             }
-        ],
-        'logged_in': logged_in
+        ]
     }
     context['carousels'][0]['active'] = 'active'
     return render(request, 'about.html', context)
@@ -111,19 +108,19 @@ def events(request):
     }
     context = {
         'events': [],
-        'logged_in': logged_in
+
     }
 
     if len(context['events']) != 0:
         context['events'][0]['active'] = 'active'
         return render(request, 'events.html', context)
     else:
-        return render(request, 'noevents.html', {'logged_in': logged_in})
+        return render(request, 'noevents.html')
 
 
 def other_sources(request):
     context = {
-        'logged_in': logged_in
+
     }
     return render(request, 'otherSources.html', context)
 
@@ -134,7 +131,7 @@ def apod(request):
     context = {
         'prev_30': [],  # array of objects of the form img_info
         'active': '',
-        'logged_in': logged_in
+
     }
 
     if len(Prev30.objects.all()) == 0 or len(
@@ -177,7 +174,7 @@ def apod(request):
 def articles(request):
     context = {
         "articles": [],
-        "logged_in": logged_in
+
     }
     article1 = {
         "id": 1,
@@ -233,12 +230,11 @@ def article(request, num):
         2: "Article2.html",
 
     }
-    return render(request, articles_table[num], {"logged_in": logged_in})
+    return render(request, articles_table[num])
 
 
 def astronomers(request):
     context_ = {
-        "logged_in": logged_in,
         "astronomers": [
 
         ]
@@ -256,42 +252,39 @@ def astronomers(request):
     return render(request, 'astronomers.html', context=context_)
 
 
+@login_required(login_url='/members/login_member')
 def member_home(request):
-    global logged_in
-    show_messages = False
-    if not logged_in:
-        return redirect('/login_member')
+    if not request.user.is_authenticated:
+        return redirect('/members/login_member')
     else:
-        return render(request, 'member_index.html',context={'carousels' : home_carousels})
+        return render(request, 'member_index.html', context={'carousels': home_carousels})
 
 
 def login_member(request):
-    global logged_in
-    if logged_in:
-        return render(request, 'member_index.html',context={'carousels' : home_carousels})
+    if request.user.is_authenticated:
+        print(request.user.username,request.user.password)
+        return redirect('/members/member_home')
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
-        if str(username).strip() == "astroclub2021" and str(password).strip() == "vp_random":
-            logged_in = True
-            return render(request, 'member_index.html',context={'carousels' : home_carousels})
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/members/member_home')
         else:
             messages.error(request, "Username or Password is incorrect")
-            logged_in = False
-            show_messages = True
-            return redirect('/login_member')
-    return render(request, 'login.html')
+            return redirect('/members/login_member')
+    return render(request, 'authenticate/login.html')
 
 
-def logout(request):
-    global logged_in
-    logged_in = False
+@login_required(login_url='/members/login_member')
+def logout_member(request):
+    logout(request)
     return redirect('/')
 
 
+@login_required(login_url='/members/loin_member')
 def astronomer_crud(request):
-    if not logged_in:
-        return redirect('/login_member')
     if request.method == "POST":
         name_ = request.POST.get('name')
         image_link_ = request.POST.get('image_link')
